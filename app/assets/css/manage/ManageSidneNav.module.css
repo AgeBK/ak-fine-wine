@@ -1,0 +1,50 @@
+.container {
+  max-width: 400px;
+  color: #fff;
+}
+
+.sideNav {
+  min-width: 160px;
+  background-color: #777;
+  padding: 5px 20px;
+}
+
+.sideNav h1 {
+  font-size: 24px;
+  font-family: cursive;
+  padding: 20px 0;
+  color: #000;
+}
+
+.sideNav li a {
+  padding: 10px;
+  cursor: pointer;
+  display: block;
+}
+
+.sideNav li a:hover {
+  color: #fff;
+}
+
+.burger {
+  cursor: pointer;
+  position: absolute;
+  background-color: #777;
+  padding: 2px;
+  font-size: 1rem;
+  font-weight: normal;
+  width: 245px;
+  text-align: center;
+}
+
+@media screen and (max-width: 650px) {
+  .burger {
+    position: static;
+    display: block;
+    width: 100%;
+  }
+
+  .sideNav {
+    text-align: center;
+  }
+}

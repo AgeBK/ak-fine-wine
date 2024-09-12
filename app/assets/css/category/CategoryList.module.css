@@ -1,0 +1,27 @@
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.table {
+  display: table;
+  width: 99%;
+  text-align: left;
+  padding: 5px;
+  background-color: #000;
+  border-radius: 6px;
+}
+
+div.table header:nth-of-type(odd) {
+  background-color: #000;
+  color: #fff;
+}
+
+.row {
+  display: table-row;
+}
+
+.col {
+  display: table-cell;
+  padding: 5px;
+}

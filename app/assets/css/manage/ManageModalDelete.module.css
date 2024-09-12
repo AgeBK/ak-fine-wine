@@ -1,0 +1,61 @@
+.modalCont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border: 2px solid #000;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.modal {
+  max-width: 30%;
+  background-color: #fff;
+  padding: 50px 30px;
+  border: 2px solid #000;
+  margin: 50px auto;
+}
+
+.exclamation {
+  margin-bottom: 10px;
+}
+
+.details {
+  margin: 20px 0;
+}
+
+.modal p {
+  text-align: left;
+}
+
+.modal b {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.modal button {
+  display: inline-block;
+}
+
+.modal a {
+  font-size: 20px;
+  display: flex;
+  border: 2px solid #888;
+  padding: 5px 15px;
+  margin: 0 5px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+.actions img {
+  vertical-align: bottom;
+}
+
+.actions span {
+  margin-right: 5px;
+  display: inline-block;
+}

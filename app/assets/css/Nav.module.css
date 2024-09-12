@@ -1,0 +1,51 @@
+.nav {
+  display: flex;
+  padding: 5px;
+  font-weight: bold;
+  border: 1px solid #000;
+}
+
+.navItem {
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+  border-right: 1px solid #000;
+}
+
+.navItem:last-child {
+  border-right: none;
+}
+
+.nav a {
+  display: flex;
+  justify-content: center;
+}
+
+.navItem div {
+  height: 40px;
+  width: 40px;
+}
+
+.navItem .white {
+  background: center / cover no-repeat url('/img/nav/whiteWine.png');
+}
+
+.navItem:hover .white {
+  background: center / cover no-repeat url('/img/nav/whiteWine.gif');
+}
+
+.navItem .red {
+  background: center / cover no-repeat url('/img/nav/redWine.png');
+}
+
+.navItem:hover .red {
+  background: center / cover no-repeat url('/img/nav/redWine.gif');
+}
+
+.navItem .sparkling {
+  background: center / cover no-repeat url('/img/nav/sparkling.png');
+}
+
+.navItem:hover .sparkling {
+  background: center / cover no-repeat url('/img/nav/sparkling.gif');
+}

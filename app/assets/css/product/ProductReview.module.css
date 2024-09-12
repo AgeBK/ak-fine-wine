@@ -1,0 +1,18 @@
+.reviews {
+  margin-top: 40px;
+}
+
+.reviews h2 {
+  margin-bottom: 20px;
+}
+
+.review {
+  padding: 20px;
+  background-color: #000;
+  color: #fff;
+}
+
+.source {
+  margin-top: 20px;
+  color: #555;
+}
