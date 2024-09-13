@@ -18,7 +18,7 @@ I have also built an admin panel portal where products on the site can be manage
 
 The site uses NextAuth for authentication where a user can be logged in (this is a requirement to access the admin panel in the site)
 
-The site uses a Postgres database hosted by Vercel with all of the products for the site. Various calls are made to the db for fetching data displayed through out the site. Examples are
+The site uses a Postgres database hosted by Vercel with all of the products for the site. Various calls are made to the db for fetching data displayed throughout the site. Examples are
 
 - fetch by wine category
 - fetch by wine category and variety
@@ -26,22 +26,26 @@ The site uses a Postgres database hosted by Vercel with all of the products for 
 - fetch by products 2 for deals
 - and many more
 
-I've built a shopping cart as well which you can add products to. The cart uses RTK which can be accessed anywhere in the site. You can increase and decrease amounts and enter a correct discount code. Caluclations are automatically made in the cart for a variety of discounts that apply to a range of many products (2 for $XX, 10 for $100, 10% off when code is entered etc) The idea being that the user can have a simulated on-line shopping experience.
+I've built a shopping cart as well which you can add products to. The cart uses RTK which can be accessed anywhere in the site. You can increase and decrease amounts and enter a correct discount code. Calculations are automatically made in the cart for a variety of discounts that apply to a range of many products (2 for $XX, 10 for $100, 10% off when code is entered etc) The idea being that the user can have a simulated on-line shopping experience.
 
 ## Features
 
-- Authoriziation
+- Authorisiation
 - Admin panel where CRUD operations can be performed for products
 - Over 1600 products
 - Over 70 components
-- Multiple filters (price, rating, variety, region)
-- Dynamic header/blurb on Category page (variety change)
-- Sorting (alphabetical, price, on sale items)
-- Paging
-- Items per page selector
-- Search bar (auto complete)
+- Search bar (MUI auto complete)
 - Shopping cart
 - Responsive carousel
+- Multiple filters (price, rating, variety, region, (search by id and name also in admin))
+- Dynamic header/blurb on Category page (variety change)
+- Sorting (alphabetical, price, sale items)
+- Paging
+- Items per page selector
+
+## Performance
+
+- Scores high 90-100 in all aspects of lighthouse report
 
 ## Pages.
 
@@ -55,4 +59,4 @@ The <b>product</b> page displays all the details about an individual product.
 
 The <b>manage</b> landing page displays a list of all the products in the database. Actions such as add/edit/delete product can be performed here. This page is similar to the category page which has paging, filtering and sorting. It also has search by id and name.
 
-The <b>manage</b> product page displays different views of which ever action you'd like to perform (add/edit/delte). Each field available from the database is displayed as well as the product image. If you choose to delete a product, a confirmation modal is displayed.
+The <b>manage</b> product page displays different views of which ever action you'd like to perform (add/edit/delete). Each field available from the database is displayed as well as the product image. If you choose to delete a product, a confirmation modal is displayed.
