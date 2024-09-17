@@ -16,7 +16,7 @@
     "@mui/material": "^5.15.16",
     "@reduxjs/toolkit": "^2.2.3",
     "@types/node": "20.5.7",
-    "@vercel/postgres": "^0.5.0",
+    "@vercel/postgres": "^0.10.0",
     "autoprefixer": "10.4.15",
     "autosuggest-highlight": "^3.3.4",
     "bcrypt": "^5.1.1",
@@ -31,6 +31,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^14.2.11",
     "@types/autosuggest-highlight": "^3.2.3",
     "@types/bcrypt": "^5.0.1",
     "@types/bcryptjs": "^2.4.6",

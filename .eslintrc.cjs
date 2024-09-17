@@ -3,6 +3,7 @@ module.exports = {
   env: { browser: true, es2020: true, node: true },
   extends: [
     'eslint:recommended',
+    'next',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
