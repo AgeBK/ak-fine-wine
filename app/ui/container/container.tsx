@@ -1,14 +1,14 @@
-// import Header from '@/app/ui/header';
-// import Footer from '@/app/ui/footer';
+import Header from '@/app/ui/header';
+import Footer from '@/app/ui/footer';
 import { ContainerProps } from '@/app/lib/definitions';
 import styles from '@/app/assets/css/Container.module.css';
 
 export default function Container({ children }: ContainerProps) {
   return (
     <div className={styles.container}>
-      {/* <Header /> */}
+      <Header />
       <main>{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
