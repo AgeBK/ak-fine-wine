@@ -278,6 +278,7 @@ export async function fetchCarouselProducts() {
     const products = data.rows;
     return cameliseArr(products);
   } catch (err) {
+    console.log(err);
     return [];
     // console.error('Database Error:', err);
     //  throw new Error('Failed to fetch carousel products.');
