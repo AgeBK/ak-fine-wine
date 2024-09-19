@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import Carousel from '../carousel/carousel-main';
+// import Carousel from '../carousel/carousel-main';
 import HomeHero from './home-hero';
 import HomeCampaign from './home-campaign';
 import HomeCampaignMini from './home-campaign-mini';
@@ -11,9 +11,7 @@ export default function Home() {
     <article>
       <HomeHero />
       <h2 className={styles.topOffers}>Top offers of the week</h2>
-      <Suspense fallback={<Loading />}>
-        <Carousel />
-      </Suspense>
+      <Suspense fallback={<Loading />}>{/* <Carousel /> */}</Suspense>
       <HomeCampaign
         link="ten-percent-off"
         hdr="10% OFF"
