@@ -13,7 +13,7 @@ export default function Footer() {
       <div className={styles.ak}>
         © {yr}
         <a
-          href="https://github.com/AgeBK/ak-fine-wine-ts?tab=readme-ov-file#about"
+          href="https://github.com/AgeBK/ak-fine-wine?tab=readme-ov-file#about"
           target="_blank"
         >
           AK Fine Wines
