@@ -1,3 +1,5 @@
+'use server';
+
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
 import Img from '@/app/ui/image';

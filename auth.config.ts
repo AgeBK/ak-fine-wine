@@ -15,7 +15,7 @@ export const authConfig = {
       const isAdminPage = nextUrl.pathname.startsWith('/manage');
       const isLoginPage = nextUrl.pathname.startsWith('/login');
       const pathname = nextUrl.searchParams.get('callbackUrl') || '/';
-      console.log('==========================');
+      console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
       console.log('LOGIN');
       console.log('isLoggedIn: ' + isLoggedIn);
       console.log('isAdminPage: ' + isAdminPage);
@@ -35,7 +35,7 @@ export const authConfig = {
         console.log('isAdminPage LOGGED IN');
         return true; // admin page / logged in
       }
-      console.log('==========================');
+      // console.log('==========================');
       return true; // normal page (no auth required)
     },
   },
