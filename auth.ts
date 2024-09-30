@@ -27,6 +27,7 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           console.log('parsedCredentials.success');
+          console.log('process.env.AUTH_SECRET: ' + process.env.AUTH_SECRET);
 
           const { email, password } = parsedCredentials.data;
           const user = await getUser(email);
