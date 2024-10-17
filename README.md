@@ -31,6 +31,7 @@ I've built a shopping cart as well which you can add products to. The cart uses 
 ## Features
 
 - Authorisiation
+- Login and sign up
 - Admin panel where CRUD operations can be performed for products
 - Over 1600 products
 - Over 70 components

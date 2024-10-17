@@ -2,7 +2,9 @@ import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '@/app/lib/actions';
 import Img from '@/app/ui/image';
 import Button from '@/app/ui/button';
+import Input from './input';
 import styles from '@/app/assets/css/LoginForm.module.css';
+import Link from 'next/link';
 
 export default function Login() {
   const { pending } = useFormStatus();
@@ -26,60 +28,40 @@ export default function Login() {
           </div>
           <div className={styles.formFields}>
             <div className={styles.inputField}>
-              <label htmlFor="email" id="lblEmail">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  aria-labelledby="lblEmail"
-                  required
+              <Input id="email" type="email" req>
+                <Img
+                  imgSrc="icons/atSymboyl.svg"
+                  imgAlt="AK Fine Wines"
+                  imgWidth={24}
+                  imgHeight={24}
                 />
-              </label>
-              <Img
-                imgSrc="icons/key.svg"
-                imgAlt="AK Fine Wines"
-                imgWidth={38}
-                imgHeight={75}
-              />
+              </Input>
             </div>
             <br />
             <div className={styles.inputField}>
-              <label htmlFor="password" id="lblPassword">
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  aria-labelledby="lblPassword"
-                  required
-                  minLength={6}
-                />
-              </label>
-              <Img
-                imgSrc="icons/key.svg"
-                imgAlt="AK Fine Wines"
-                imgWidth={38}
-                imgHeight={75}
-              />
+              <Input id="password" type="password" minLen={6} req>
+                <Button css="">
+                  <Img
+                    imgSrc="icons/showPwd.png"
+                    imgAlt="Show password"
+                    imgWidth={16}
+                    imgHeight={16}
+                  />
+                </Button>
+              </Input>
             </div>
           </div>
           <Button css="loginBtn" disabled={pending}>
             Sign in
           </Button>
           <div aria-live="polite" aria-atomic="true">
-            {errorMessage && (
-              <>
-                <Img
-                  imgSrc="icons/exclamationCircle.svg"
-                  imgAlt="AK Fine Wines"
-                  imgWidth={38}
-                  imgHeight={75}
-                />
-                <p>{errorMessage}</p>
-              </>
-            )}
+            {errorMessage && <p className={styles.errorMsg}>{errorMessage}</p>}
           </div>
+          <hr />
+          <p>Don’t have an account?</p>
+          <Link href="/signup" className={styles.signUp}>
+            Sign Up
+          </Link>
         </form>
       </div>
     </article>

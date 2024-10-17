@@ -1,7 +1,7 @@
 import { PriceProps } from '../lib/definitions';
 import styles from '@/app/assets/css/Price.module.css';
 
-function Price({ current, normal }: PriceProps) {
+export default function Price({ current, normal }: PriceProps) {
   // price on category page & carousel
   return (
     <>
@@ -13,4 +13,3 @@ function Price({ current, normal }: PriceProps) {
   );
 }
 
-export default Price;

@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextAuthConfig } from 'next-auth';
-
 export const authConfig = {
   pages: {
     signIn: '/login',
@@ -15,28 +15,41 @@ export const authConfig = {
       const isAdminPage = nextUrl.pathname.startsWith('/manage');
       const isLoginPage = nextUrl.pathname.startsWith('/login');
       const pathname = nextUrl.searchParams.get('callbackUrl') || '/';
-      console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-      console.log('LOGIN');
-      console.log('isLoggedIn: ' + isLoggedIn);
-      console.log('isAdminPage: ' + isAdminPage);
-      console.log('isLoginPage: ' + isLoginPage);
-      console.log('pathname:' + pathname);
+      // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+      // console.log('LOGIN');
+      // console.log('isLoggedIn: ' + isLoggedIn);
+      // console.log('isAdminPage: ' + isAdminPage);
+      // console.log('isLoginPage: ' + isLoginPage);
+      // console.log('pathname:' + pathname);
 
       if (isLoginPage && isLoggedIn) {
-        console.log('isLoginPage && LOGGED IN');
+        //  console.log('isLoginPage && LOGGED IN');
         return Response.redirect(new URL(pathname, nextUrl));
       }
 
       if (isAdminPage) {
         if (!isLoggedIn) {
-          console.log('isAdminPage NOT LOGGED IN');
           return Response.redirect(new URL('/login', nextUrl));
         }
-        console.log('isAdminPage LOGGED IN');
         return true; // admin page / logged in
       }
-      // console.log('==========================');
       return true; // normal page (no auth required)
+    },
+    jwt: ({ token, user }: { token: any; user: any }): any => {
+      if (user) {
+        token.uid = user;
+      }
+
+      return token;
+    },
+    session: ({ session, token }: { session: any; token: any }): any => {
+      // modified session to return first and last name
+      session.user = {
+        firstName: token.uid.first_name,
+        lastName: token.uid.last_name,
+        email: token.uid.email,
+      };
+      return session;
     },
   },
 } satisfies NextAuthConfig;

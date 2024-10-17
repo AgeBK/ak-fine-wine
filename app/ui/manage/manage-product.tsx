@@ -29,8 +29,8 @@ export default function ManageProduct({
   const [showModal, setShowModal] = useState<boolean>(false);
   const [productId, setProductId] = useState<string>('');
   const { id, name } = product;
-  const isDelete = action === 'delete';
   const { MIN_PRODUCT_ID_LENGTH } = data;
+  const isDelete = action === 'delete';
 
   // eslint-disable-next-line
   let currentActionFn: any = null;
@@ -63,10 +63,12 @@ export default function ManageProduct({
   const handleChange = ({
     target: { value, id },
   }: ChangeEvent<HTMLInputElement>) => {
-    if (id === 'id' && value.length >= MIN_PRODUCT_ID_LENGTH) {
-      setProductId(value);
-    } else {
-      setProductId('');
+    if (id === 'id') {
+      if (value.length >= MIN_PRODUCT_ID_LENGTH) {
+        setProductId(value);
+      } else {
+        setProductId('');
+      }
     }
   };
 

@@ -4,15 +4,22 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { FormStateProps, SchemaProps } from './definitions';
+import bcrypt from 'bcrypt';
+import { FormStateProps, SchemaProps, SignUpSchemaProps } from './definitions';
 
 const minStr1 = z
   .string()
   .min(1, { message: 'Must be 1 or more characters long' });
+const minStr2 = z
+  .string()
+  .min(2, { message: 'Must be 2 or more characters long' });
 const gt0 = z
   .number()
   .gt(0, { message: 'Please enter an amount greater than 0.' });
 const nonNeg = z.coerce.number().nonnegative();
+const passwordStr = z
+  .string()
+  .min(6, { message: 'Must be 6 or more characters long' });
 
 const FormSchema = z.object({
   id: z.string().min(5, { message: 'Id must be 5 or more characters long' }),
@@ -36,7 +43,33 @@ const FormSchema = z.object({
   unitOfMeasureLabel: z.string(),
 });
 
+const SignUpSchema = z
+  .object({
+    firstName: minStr2,
+    lastName: minStr2,
+    email: z
+      .string()
+      .min(5, { message: 'Email is required.' })
+      .email('This is not a valid email.'),
+    password: passwordStr,
+    confirmPassword: passwordStr,
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
+
 const UpdateSchema = FormSchema.omit({ id: true });
+
+const validateSignUpData = (Schema: SignUpSchemaProps, formData: FormData) => {
+  return Schema.safeParse({
+    firstName: formData.get('fName'),
+    lastName: formData.get('lName'),
+    email: formData.get('email'),
+    password: formData.get('password'),
+    confirmPassword: formData.get('confirmPassword'),
+  });
+};
 
 const validateFormData = (Schema: SchemaProps, formData: FormData) => {
   return Schema.safeParse({
@@ -61,6 +94,69 @@ const validateFormData = (Schema: SchemaProps, formData: FormData) => {
     unitOfMeasureLabel: formData.get('unitOfMeasureLabel'),
   });
 };
+
+export async function signUp(prevState: FormStateProps, formData: FormData) {
+  const validatedFields = validateSignUpData(SignUpSchema, formData);
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: 'Failed to sign up. Please check the fields above',
+    };
+  }
+
+  const { firstName, lastName, email, password } = validatedFields.data;
+
+  try {
+    const data = await sql`
+    SELECT count(email) 
+    FROM customer 
+    WHERE email=${email}
+  `;
+    if (data.rows[0].count > 0) {
+      console.log(
+        'Failed to insert new customer: email address already exists',
+      );
+      return {
+        message: 'That email address already exists',
+      };
+    }
+  } catch (error) {
+    console.log('Failed to check if email exists: ' + error);
+    return {
+      message:
+        'Database Error - Sorry an error has occured. Please try again later',
+      //errors: JSON.parse(JSON.stringify(error)),
+    };
+  }
+
+  const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync());
+  try {
+    await sql`
+    INSERT INTO "customer"(
+        "first_name",
+        "last_name",
+        "email",
+        "password"
+        )
+
+        VALUES(
+          ${firstName},
+          ${lastName},
+          ${email},
+          ${hashedPassword}
+                  )`;
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.log('Failed to insert new customer: ' + error);
+    return {
+      message: 'Database Error - Failed to insert new customer: \n' + error,
+      //errors: JSON.parse(JSON.stringify(error)),
+    };
+  }
+}
 
 export async function addProduct(
   prevState: FormStateProps,
@@ -146,8 +242,8 @@ export async function addProduct(
   } catch (error) {
     console.log('Failed to add new product: ' + error);
     return {
-      message: 'Database Error - Failed to add new product:' + error,
-      errors: JSON.parse(JSON.stringify(error)),
+      message: 'Database Error - Failed to add new product: \n' + error,
+      // errors: JSON.parse(JSON.stringify(error)),
     };
   }
   return {
@@ -215,8 +311,8 @@ export async function updateProduct(
   } catch (error) {
     console.log('Failed to update product: ' + error);
     return {
-      message: 'Database Error - Failed to update product:' + error,
-      errors: JSON.parse(JSON.stringify(error)),
+      message: 'Database Error - Failed to update product: \n' + error,
+      // errors: JSON.parse(JSON.stringify(error)),
     };
   }
   return {
@@ -234,7 +330,7 @@ export async function deleteProduct(id: string) {
     console.log('Failed to delete product: ' + error);
     return {
       message: 'Database Error - Failed to delete product:' + error,
-      errors: JSON.parse(JSON.stringify(error)),
+      // errors: JSON.parse(JSON.stringify(error)),
     };
   }
 }

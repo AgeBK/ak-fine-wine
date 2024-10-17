@@ -10,7 +10,7 @@ import Img from './image';
 import Cart from './cart/cart';
 import styles from '@/app/assets/css/Header.module.css';
 
-export default function HeaderUserCart({ user }: { user: string | null }) {
+export default function HeaderUserCart({ user }: { user: string | undefined }) {
   // loads cart and user state (logged in or not icon)
   const dispatch = useDispatch();
   const pathname = usePathname().substring(1);

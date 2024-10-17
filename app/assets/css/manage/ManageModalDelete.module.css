@@ -59,3 +59,22 @@
   margin-right: 5px;
   display: inline-block;
 }
+
+@media screen and (max-width: 900px) {
+  .modal {
+    max-width: 50%;
+    background-color: #fff;
+    padding: 30px 20px;
+    border: 2px solid #000;
+    margin: 50px auto;
+  }
+
+  .modal .actions {
+    flex-direction: column;
+  }
+
+  .modal .actions a {
+    display: block;
+    margin-bottom: 10px;
+  }
+}

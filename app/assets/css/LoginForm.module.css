@@ -40,8 +40,8 @@
 }
 
 .inputField input {
-  padding: 13px 13px 13px 30px; /* font-size: 18px; */
-  background-color: #f6f6f6;
+  padding: 13px 13px 13px 30px;
+  background-color: #e8f0fe;
   border: 0;
   color: #d3d3d3;
 }
@@ -57,4 +57,18 @@
   left: 5px;
   top: 10px;
   text-align: center;
+}
+
+.signUp {
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #e8f0fe;
+  display: block;
+}
+
+.errorMsg {
+  color: #f00;
+  font-size: 14px;
+  height: 16px;
 }

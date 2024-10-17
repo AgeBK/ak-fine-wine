@@ -1,6 +1,8 @@
 import { auth } from './auth';
 
 export default async function getUser() {
-  const session = await auth(); // name/email
-  return session?.user?.name || null;
+  // first name/last name/email
+  // I modified the standard session in auth.config
+  const session = await auth();
+  return session?.user || null;
 }

@@ -10,6 +10,7 @@ import styles from '@/app/assets/css/Header.module.css';
 export default async function Header() {
   // loads site header / calls to fetch all products and check if current user has a session
   const [products, user] = await Promise.all([fetchProducts(), getUser()]);
+  const firstName = user?.firstName;
 
   return (
     <header className={styles.header}>
@@ -29,7 +30,7 @@ export default async function Header() {
           AK <span>FINE WINES</span>
         </h1>
         <AutoComplete products={products} />
-        <HeaderUserCart user={user} />
+        <HeaderUserCart user={firstName} />
       </div>
       <Nav />
     </header>

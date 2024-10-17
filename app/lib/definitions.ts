@@ -1,5 +1,4 @@
 // data definitions
-
 import { ChangeEvent, ReactNode, RefObject } from 'react';
 import { z } from 'zod';
 
@@ -396,7 +395,7 @@ export type ManageUploadProps = {
   isDelete: boolean;
 };
 
-// export interface ManageImageProps extends ManageUploadProps {
+// TOOO: export interface ManageImageProps extends ManageUploadProps {
 export interface ManageImageProps {
   productId: string;
   action: string;
@@ -462,6 +461,57 @@ export type ReslutPPProps = {
   paging: PagingProps;
   updatePaging: (paging: PagingProps) => void;
 };
+
+export type InputProps = {
+  children?: ReactNode;
+  id: string;
+  pHolder?: string;
+  type?: string;
+  minLen?: number;
+  req?: boolean;
+};
+
+export type SignUpSchemaProps = z.ZodEffects<
+  z.ZodObject<
+    {
+      firstName: z.ZodString;
+      lastName: z.ZodString;
+      email: z.ZodString;
+      password: z.ZodString;
+      confirmPassword: z.ZodString;
+    },
+    'strip',
+    z.ZodTypeAny,
+    {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    },
+    {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+      confirmPassword: string;
+    }
+  >,
+  {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  },
+  {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }
+>;
 
 export type SchemaProps = z.ZodObject<
   Omit<

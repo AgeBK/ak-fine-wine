@@ -233,7 +233,7 @@ const uploadImg = async (file: Blob, productId: string) => {
   const fileName: string = `${productId}.webp`;
   const formData = new FormData();
   formData.append('file', file, fileName);
-  
+
   const response = await fetch('/api/upload', {
     method: 'POST',
     body: formData,
@@ -244,7 +244,7 @@ const uploadImg = async (file: Blob, productId: string) => {
   if (result.success) {
     return true;
   } else {
-    console.log('ManageUpload image uploaded FAILED');
+    console.log('ManageUpload image FAILED');
     return false;
   }
 };
@@ -253,8 +253,8 @@ const camelise = (product: DataProps) => {
   // convert keys names in object from underscore to camel case (from db to React friendly)
   const camelCased = Object.entries(product).reduce((acc, val) => {
     const value = val[1];
-    const key = val[0].replace(/_([a-z])/g, (g) => {
-      return g[1].toUpperCase();
+    const key = val[0].replace(/_([a-z])/g, (str) => {
+      return str[1].toUpperCase();
     });
     acc = { ...acc, [key]: value };
     return acc;
