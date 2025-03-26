@@ -272,6 +272,7 @@ export async function fetchCarouselProducts() {
     const data = await sql<DataProps>`
       SELECT * FROM products 
       WHERE price_current != price_normal 
+      ORDER BY RANDOM()
       LIMIT 12
       `;
 

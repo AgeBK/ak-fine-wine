@@ -1,6 +1,6 @@
 .main {
-  background: linear-gradient(to bottom, #999, #555, #999);
-  height: 100vh;
+  background: linear-gradient(to bottom, #999, #000, #999);
+  /* height: 100vh; */
 }
 
 .container {
