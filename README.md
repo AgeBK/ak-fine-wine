@@ -61,3 +61,5 @@ The <b>product</b> page displays all the details about an individual product.
 The <b>manage</b> landing page displays a list of all the products in the database. Actions such as add/edit/delete product can be performed here. This page is similar to the category page which has paging, filtering and sorting. It also has search by id and name.
 
 The <b>manage</b> product page displays different views of which ever action you'd like to perform (add/edit/delete). Each field available from the database is displayed as well as the product image. If you choose to delete a product, a confirmation modal is displayed.
+
+<a target="_blank" href="https://ak-fine-wine.vercel.app/manage">Link to admin</a>
