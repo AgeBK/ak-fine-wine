@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// import next from 'next';
 import type { NextAuthConfig } from 'next-auth';
 export const authConfig = {
   pages: {
@@ -14,7 +15,7 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
       const isAdminPage = nextUrl.pathname.startsWith('/manage');
       const isLoginPage = nextUrl.pathname.startsWith('/login');
-      const pathname = nextUrl.searchParams.get('callbackUrl') || '/';
+      // const pathname = nextUrl.searchParams.get('callbackUrl') || '/';
       // console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
       // console.log('LOGIN');
       // console.log('isLoggedIn: ' + isLoggedIn);
@@ -23,8 +24,8 @@ export const authConfig = {
       // console.log('pathname:' + pathname);
 
       if (isLoginPage && isLoggedIn) {
-        //  console.log('isLoginPage && LOGGED IN');
-        return Response.redirect(new URL(pathname, nextUrl));
+        //console.log('isLoginPage && LOGGED IN');
+        return Response.redirect(new URL('/manage', nextUrl));
       }
 
       if (isAdminPage) {
